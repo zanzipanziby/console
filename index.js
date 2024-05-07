@@ -1,4 +1,7 @@
 import chalk from 'chalk'
+import { config } from 'dotenv'
+
+config();
 
 if (process.argv.length < 3) {
     console.error('Укажите величину в дюймах');
@@ -12,9 +15,13 @@ if (!inches) {
 }
 
 const centimetres = inches * 2.54
-if (process.env.COLORIZE && process.env.COLORIZE === 'no') {
+const colorize = process.env.COLORIZE
+if (colorize && colorize === 'no') {
     console.log(`${inches}\" >>>>> ${centimetres} см.`);
+    console.log(colorize)
 } else {
-    console.log(`${chalk.blue(inches)}\" >>>>> ${chalk.green(centimetres)} см.`);
+    console.log(`${chalk.blue(inches)}\" ${chalk.yellow('>>>>>')} ${chalk.green(centimetres)} см.`);
+    console.log(colorize)
 }
+
 
